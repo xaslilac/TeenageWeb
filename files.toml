@@ -5,6 +5,8 @@
 
 
 # jQuery
+"./dist/jquery/jquery-3.6.1.js"      = "https://code.jquery.com/jquery-3.6.1.js"
+"./dist/jquery/jquery-3.6.1.min.js"  = "https://code.jquery.com/jquery-3.6.1.min.js"
 "./dist/jquery/jquery-3.6.0.js"      = "https://code.jquery.com/jquery-3.6.0.js"
 "./dist/jquery/jquery-3.6.0.min.js"  = "https://code.jquery.com/jquery-3.6.0.min.js"
 "./dist/jquery/jquery-3.5.1.js"      = "https://code.jquery.com/jquery-3.5.1.js"
