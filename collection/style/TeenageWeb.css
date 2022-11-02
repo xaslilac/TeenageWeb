@@ -31,6 +31,7 @@ h1 {
 }
 
 body {
+	/* Maybe make this an image-set when support is better? */
 	background-image: url("../images/cover.jpg");
 	background-size: cover;
 	background-position: center;
@@ -40,6 +41,6 @@ body {
 }
 
 .cover {
-	width: 960px;
+	max-width: 960px;
 	margin: 200px auto 0;
 }
