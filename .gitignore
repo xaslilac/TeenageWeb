@@ -4,8 +4,8 @@
 .nova/
 .vscode/
 build/
-collection/
 dist/
+images/
 node_modules/
 target/
 *.log
