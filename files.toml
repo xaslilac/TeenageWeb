@@ -215,7 +215,7 @@
 "./dist/prototype/prototype-1.5.js"     = "http://prototypejs.org/assets/2007/1/18/prototype.js"
 
 # Prototype.Scriptaculous
-"./dist/prototype/scripty-2.0.0-b1.zip"   = "http://script.aculo.us/dist/scripty2/scripty2-2.0.0-b1.zip"
+"./dist/prototype/scripty-2.0.0-b1.zip"   = "http://scripty2.com/download/scripty2-2.0.0_b1.zip"
 "./dist/prototype/scriptaculous-1.9.0.js" = "https://ajax.googleapis.com/ajax/libs/scriptaculous/1.9.0/scriptaculous.js"
 "./dist/prototype/scriptaculous-1.8.3.js" = "https://ajax.googleapis.com/ajax/libs/scriptaculous/1.8.3/scriptaculous.js"
 "./dist/prototype/scriptaculous-1.8.2.js" = "https://ajax.googleapis.com/ajax/libs/scriptaculous/1.8.2/scriptaculous.js"
