@@ -4,10 +4,5 @@
 .nova/
 .vscode/
 build/
+collection/images/
 dist/
-images/
-node_modules/
-target/
-*.log
-*.pyc
-*.tsbuildinfo

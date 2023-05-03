@@ -1,19 +1,143 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>The Teenage Web</title>
-		<link
-			rel="preload"
-			href="https://cdn.mckayla.cloud/fonts/outfit/Outfit-Variable.woff2"
-			as="font"
-			type="font/woff2"
-			crossorigin="anonymous"
-		/>
-		<link rel="stylesheet" href="./collection/style/TeenageWeb.css" />
-	</head>
-	<body>
-		<div class="cover">
-			<h1>The Teenage Web</h1>
-		</div>
-	</body>
+<head>
+<title>The Teenage Web</title>
+<link rel="preload"
+	href="https://cdn.mckayla.cloud/fonts/outfit/Outfit-Variable.woff2"
+	as="font" type="font/woff2" crossorigin="anonymous" />
+
+<!-- TODO: REPLACE THIS -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" />
+
+<link rel="stylesheet" href="./collection/style/TeenageWeb.css" />
+<link rel="stylesheet" href="https://unpkg.com/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+</head>
+<body>
+<div class="header content">
+
+<h1>The Teenage Web</h1>
+
+</div>
+<div class="main">
+<div class="content">
+
+<summary>
+The web used to be a lot more fun. and a lot easier, too.
+</summary>
+
+<p>
+I want to show you something. It's a Makefile, for a popular open-source library that you
+may have heard of called jQuery. It's not all that popular these days, but there was a
+time where it and JavaScript were basically synonymous. I knew serious, talented,
+professional developers back in 2010 who had never bootstrapped a project on their own,
+and thought that jQuery was just always there; a part of the platform.<br />
+Back in 2010, <a href="https://github.com/jquery/jquery/blob/9bd9ebdd73fe0e2d29fadf82947c98adde4023e7/Makefile">jQuery used <code>make</code></a>
+as the tool with which it was built. I hesitate to call it an actual
+build system, because all it really did was call <code>cat</code> (and Google's
+<a href="https://developers.google.com/closure/compiler">Closure Compiler</a> for the minified
+version), on a bunch of source files. I've modified it slightly for brevity and clarity,
+but you can see the essence of it here:
+</p>
+
+<pre class="code language-makefile"><code class="language-makefile">MODULES = \
+	src/intro.js \
+	src/core.js \
+	src/support.js \
+	src/data.js \
+	src/queue.js \
+	src/attributes.js \
+	src/event.js \
+	src/selector.js \
+	src/traversing.js \
+	src/manipulation.js \
+	src/css.js \
+	src/ajax.js \
+	src/effects.js \
+	src/offset.js \
+	src/dimensions.js \
+	src/outro.js
+
+all: jq jqmin
+.PHONY: all
+
+build/:
+	@@mkdir -p $@
+
+jq: ./build/jquery.js
+.PHONY: jq
+
+DATE = $(shell git log -1 --pretty=format:%ad)
+JQ_VER = $(shell cat version.txt)
+
+./build/jquery.js: ${MODULES} | build/
+	@@cat $^ | \
+		sed 's/.function..jQuery...{//' | \
+		sed 's/}...jQuery..;//' | \
+		sed 's/Date:./&'"${DATE}"'/' | \
+		sed "s/@VERSION/${JQ_VER}/" > $@;
+
+jqmin: ./build/jquery.min.js
+.PHONY: jqmin
+
+./build/jquery.min.js: ./build/jquery.js
+  closurec $^ > $@</pre></code>
+<cite><a href="https://github.com/jquery/jquery/blob/9b20df0375f37cc0997bd8ed3d1892a23967d3d5/Makefile">github.com/jquery/jquery</a> — The jQuery Code repository, as of v1.4.4</cite>
+
+<p>
+I have a very sentimental attachment to <em>The Teenage Web</em>. That era of the Internet when
+people were starting to get high-speed connections to their homes, when Facebook and
+Twitter were just getting started, when choosing which email service you wanted to use was
+a serious life decision, when having an iPod touch made you feel like one of the cool kids,
+and when tools like jQuery, MooTools, and Prototype rained supreme.
+</p>
+
+<p>
+I'd define <em>The Teenage Web</em> to be from about 2004 until around 2011. Now, by the year
+2004, the Internet was hardly a literal teenager (with the conscencous being this it was
+born in 1983, it was well into its 20's by the time I'm refering to) and if the above
+description sounds like it's coming from a pretty specific perspective, it is. This period
+of time is when I myself was coming into teenager-dom, and additionally when I first
+started learning to program. The Internet still had a lose, somewhat chaotic, feel, but
+was growing and maturing incredibly quickly. The web by now, has hit maturity, and I think
+it's a version of maturity that many of us are not incredibly happy with.
+<ul>
+<li>Even simple websites will make you download their bundled version of React along with
+7 versions of left-pad. Remember when large JavaScript libraries were pulled in from CDNs?</li>
+<li>Tracking and cookie banners are everywhere. They'll happily let you opt-in to tracking
+with a single click, but will require at least 4 or 5 if you'd rather not be tracked.</li>
+<li>Paywalls, newsletter prompts, memberships, logins; everyone wants a piece of your
+wallet or identify. Preferably both. Wouldn't it be awful if you missed out on an opportunity
+to be a consumer?</li>
+</ul>
+</p>
+
+<p>
+It's a mess for users, but things are worse for developers now as well! When I was first
+learning to program, learning HTML and CSS felt like enough to be able to build a website,
+but people learning today need to understand the differences between JavaScript and TypeScript,
+how to use frameworks like Vue or React, and how to build/bundle their code into a form fit
+for delivery to users. Should they use an "all-in-one" solution like Next.js, or should they
+use something like ESBuild or Vite? What's the difference anyway? Additionally, they need
+to pick a way to host their website using something like Vercel, Netlify, or even worse,
+something more complicated like Fly.io, Heroku, or <em>*shudders*</em> AWS.
+</p>
+
+<p>
+All of my oldest websites were just HTML, CSS, and maybe a little JavaScript. More recently,
+I yearn for
+</p>
+
+<p>
+The web used to be fun. It used to be open, accessable, and for everyone. I miss the days
+when everyone was just vibing, having a good time, experimenting and trying to push the
+limits of the technology for good, not evil.
+</p>
+
+</div>
+</div>
+<script src="https://unpkg.com/prismjs@1.29.0/components/prism-core.min.js"></script>
+<script src="https://unpkg.com/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
 </html>
