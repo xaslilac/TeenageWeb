@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: aslilac/setup@v1
+      - uses: aslilac/setup@v1
         with:
           archives: |
             https://github.com/aslilac/betty/releases/download/v0.1.1/betty-v0.1.1-x86_64-unknown-linux-gnu.tar.gz
