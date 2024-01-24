@@ -2,17 +2,13 @@
 <html>
 <head>
 <title>The Teenage Web</title>
+
 <link rel="preload"
-	href="https://cdn.mckayla.cloud/fonts/outfit/Outfit-Variable.woff2"
+	href="https://cdn.mckayla.cloud/fonts/Outfit.woff2"
 	as="font" type="font/woff2" crossorigin="anonymous" />
-
-<!-- TODO: REPLACE THIS -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" />
-
-<link rel="stylesheet" href="./collection/style/TeenageWeb.css" />
+<link rel="stylesheet" href="./collection/stylesheets/TeenageWeb.css" />
 <link rel="stylesheet" href="https://unpkg.com/prismjs@1.29.0/themes/prism-tomorrow.min.css" />
+
 </head>
 <body>
 <div class="header content">
@@ -23,22 +19,11 @@
 <div class="main">
 <div class="content">
 
-<summary>
-The web used to be a lot more fun. and a lot easier, too.
+<summary>The web used to be a lot more fun. and a lot easier, too.
 </summary>
 
-<p>
-I want to show you something. It's a Makefile, for a popular open-source library that you
-may have heard of called jQuery. It's not all that popular these days, but there was a
-time where it and JavaScript were basically synonymous. I knew serious, talented,
-professional developers back in 2010 who had never bootstrapped a project on their own,
-and thought that jQuery was just always there; a part of the platform.<br />
-Back in 2010, <a href="https://github.com/jquery/jquery/blob/9bd9ebdd73fe0e2d29fadf82947c98adde4023e7/Makefile">jQuery used <code>make</code></a>
-as the tool with which it was built. I hesitate to call it an actual
-build system, because all it really did was call <code>cat</code> (and Google's
-<a href="https://developers.google.com/closure/compiler">Closure Compiler</a> for the minified
-version), on a bunch of source files. I've modified it slightly for brevity and clarity,
-but you can see the essence of it here:
+<p>I want to show you something. It's a build script from 2010, for a popular open-source JavaScript library that you may have heard of called jQuery. It's not all that popular these days, but there was a time where it and JavaScript were basically synonymous.<br />
+Back in 2010, jQuery used <code>make</code></a> to put itself together. I hesitate to call it a build system, or even a bundler, because all it did was call <a href="https://en.wikipedia.org/wiki/Cat_(Unix)"><code>cat</code></a> (and Google's <a href="https://developers.google.com/closure/compiler">Closure Compiler</a> to optimize code size), on a bunch of source files. I've modified the <a href="https://github.com/jquery/jquery/blob/9b20df0375f37cc0997bd8ed3d1892a23967d3d5/Makefile">original Makefile</a> slightly for brevity and clarity, but I've done my best to preserve the essence:
 </p>
 
 <pre class="code language-makefile"><code class="language-makefile">MODULES = \
@@ -63,18 +48,20 @@ all: jq jqmin
 .PHONY: all
 
 build/:
-	@@mkdir -p $@
+	mkdir -p $@
 
 jq: ./build/jquery.js
 .PHONY: jq
 
+# Ask Git when the last commit was made, and get the current version number from version.txt.
+# Remember these variables names, we'll use them in just a moment.
 DATE = $(shell git log -1 --pretty=format:%ad)
 JQ_VER = $(shell cat version.txt)
 
+# `sed` is a command for replacing text in a file. "Date:" will be replaced with the
+# timestamp of the latest commit, and "@VERSION" will be replaced with the version number.
 ./build/jquery.js: ${MODULES} | build/
-	@@cat $^ | \
-		sed 's/.function..jQuery...{//' | \
-		sed 's/}...jQuery..;//' | \
+	cat $^ | \
 		sed 's/Date:./&'"${DATE}"'/' | \
 		sed "s/@VERSION/${JQ_VER}/" > $@;
 
@@ -85,17 +72,26 @@ jqmin: ./build/jquery.min.js
   closurec $^ > $@</pre></code>
 <cite><a href="https://github.com/jquery/jquery/blob/9b20df0375f37cc0997bd8ed3d1892a23967d3d5/Makefile">github.com/jquery/jquery</a> — The jQuery Code repository, as of v1.4.4</cite>
 
-<p>
-I have a very sentimental attachment to <em>The Teenage Web</em>. That era of the Internet when
-people were starting to get high-speed connections to their homes, when Facebook and
+<p>I know Makefile syntax isn't the most friendly on first glance, but the core concept is incredibly simple. You have input files, and you have output files. Your Makefile is a list of output files, followed by the steps (shell commands) needed to make that file. You can also list <em>fake files</em> (<code>.PHONY</code>) to help tie everything together. <code>make</code> doesn't even know what JavaScript is, and it doesn't need to. The great thing about using <code>make</code> to build jQuery, was that it reused an existing tool that people were likely to already have installed on their systems. I had it on my MacBook back then, without even really know what it was. It wasn't without compromises, however! In computer science, the only way that a tool becomes as prolific as <code>make</code> is by being old, and <em>riddled</em> with compromises. For starters, using <code>make</code> on Windows is a much worse experience, and that's only when it's not out-right broken.
+</p>
+
+<p>This sort of simplicity extended to using jQuery as well. If you wanted to use jQuery on your website, all you had to do was add a <code>&lt;script&gt;</code> tag to your HTML. You could either download a copy of jQuery from their website to include alongside your own code, or you could use of a number of CDNs which hosted various versions of jQuery. (Spoiler alert, The Teenage Web is a modern take on this.)
+
+<hr />
+
+<notes>ok, so maybe rather than some "appeal to tradition" bullshit, I should lean into more of a "start swinging the pendulum back" type of thing, saying "maybe we over corrected, and some of what we've come to is interesting, but a lot of it just isn't really working out imo."
+actually, you know what? fuck trying to say anything at all, what if it was just a cool retro throw-back to an era of web development that has kind of been lost to time?
+</notes>
+
+<p>I have a very sentimental attachment to <em>The Teenage Web</em>. That era of the Internet when people were starting to get high-speed connections to their homes, when Facebook and
 Twitter were just getting started, when choosing which email service you wanted to use was
 a serious life decision, when having an iPod touch made you feel like one of the cool kids,
 and when tools like jQuery, MooTools, and Prototype rained supreme.
 </p>
 
 <p>
-I'd define <em>The Teenage Web</em> to be from about 2004 until around 2011. Now, by the year
-2004, the Internet was hardly a literal teenager (with the conscencous being this it was
+I'd define <em>The Teenage Web</em> to be roughly from 2004 to 2012. Now, by the year
+2004, the Internet was hardly a literal teenager (with the consensus being this it was
 born in 1983, it was well into its 20's by the time I'm refering to) and if the above
 description sounds like it's coming from a pretty specific perspective, it is. This period
 of time is when I myself was coming into teenager-dom, and additionally when I first
@@ -111,6 +107,9 @@ with a single click, but will require at least 4 or 5 if you'd rather not be tra
 wallet or identify. Preferably both. Wouldn't it be awful if you missed out on an opportunity
 to be a consumer?</li>
 </ul>
+</p>
+
+<p>Just forward to today (2024), and it's a very different story. Instead of <code>make</code>, we tend to use tools that are <em>much</em> more complicated,
 </p>
 
 <p>
@@ -137,7 +136,9 @@ limits of the technology for good, not evil.
 
 </div>
 </div>
+
 <script src="https://unpkg.com/prismjs@1.29.0/components/prism-core.min.js"></script>
 <script src="https://unpkg.com/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script src="./dist/dojo/1.4.8/dojo/dojo.js.uncompressed.js"></script>
 </body>
 </html>

@@ -1,3 +1,3 @@
-# TeenageWeb
+# The Teenage Web
 
-I miss the old internet.
+A blog post? or a playground? or both?
