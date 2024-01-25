@@ -171,6 +171,15 @@
 "./dist/jquery/jquery-1.0.1.js"      = "https://code.jquery.com/jquery-1.0.1.js"
 "./dist/jquery/jquery-1.0.js"        = "https://code.jquery.com/jquery-1.0.js"
 
+# Zepto
+"./dist/zepto/zepto-slim-official-1.2.0.js"     = "https://zeptojs.com/zepto.js"
+"./dist/zepto/zepto-slim-official-1.2.0.min.js" = "https://zeptojs.com/zepto.min.js"
+"./dist/zepto/zepto-1.2.0.js"     = "https://cdn.mckayla.cloud/-/CKcBH9V/zepto-1.2.0.js"
+"./dist/zepto/zepto-1.2.0.min.js" = "https://cdn.mckayla.cloud/-/CKcBH9V/zepto-1.2.0.min.js"
+"./dist/zepto/zepto-1.1.7.js"     = "https://cdn.mckayla.cloud/-/CKcBH9V/zepto-1.1.7.js"
+"./dist/zepto/zepto-1.1.7.min.js" = "https://cdn.mckayla.cloud/-/CKcBH9V/zepto-1.1.7.min.js"
+"./dist/zepto/zepto-1.0.js"       = "https://cdn.mckayla.cloud/-/CKcBH9V/zepto-1.0.js"
+"./dist/zepto/zepto-1.0.min.js"   = "https://cdn.mckayla.cloud/-/CKcBH9V/zepto-1.0.min.js"
 
 # MooTools
 "./dist/mootools/mootools-1.6.0.js"     = "https://ajax.googleapis.com/ajax/libs/mootools/1.6.0/mootools.js"
