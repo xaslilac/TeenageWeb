@@ -16,11 +16,9 @@ jobs:
       - uses: actions/checkout@v3
         name: checkout
 
-      - run: echo $RUNNER_TOOL_CACHE; ls $RUNNER_TOOL_CACHE
-
       - run: |
           curl -sSL https://github.com/aslilac/betty/releases/download/v0.1.1/betty-v0.1.1-x86_64-unknown-linux-gnu.tar.gz | \
-            tar -xvz -C $RUNNER_TOOL_CACHE
+            tar -xvz -C /usr/local/bin
         name: betty (prepare)
 
       - uses: actions/cache@v4
